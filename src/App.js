@@ -39,7 +39,15 @@ function App() {
                     height="100vh"
                     style={{}}
                 >
-             
+                    {branches.map((location)=>{
+                        return <Marker key={location.id}
+                                       latitude={location.latitude}
+                                       longitude={location.longitude}>
+                            <button>
+                                <img src="/mapbox-marker-icon-20px-orange.png" alt=" "/>
+                            </button>
+                        </Marker>
+                    })}
                 </ReactMapGL>
             </div>
         </div>
