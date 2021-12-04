@@ -1,9 +1,26 @@
+import * as React from 'react';
+import { useState } from 'react';
+import ReactMapGL from 'react-map-gl';
+
 
 function App() {
-  return (
-    <div className="App">
-<h2>Attempt two</h2>
-    </div>
+    const [viewport, setViewport] = useState({
+
+        latitude: 37.7577,
+        longitude: -122.4376,
+        zoom: 8
+    });
+
+    return (
+   <ReactMapGL
+       {...viewport}
+       mapboxApiAccessToken="pk.eyJ1Ijoic2hpdmFuaXgiLCJhIjoiY2t3cmExaHZyMHVxODMxbnljMWhhdzF3eiJ9.P9Fsyeu_1o61PHKGsTa96g"
+       mapStyle="mapbox://styles/mapbox/dark-v9"
+       width="100vw"
+       height="100vh"
+       >
+       Attempt two
+   </ReactMapGL>
   );
 }
 
