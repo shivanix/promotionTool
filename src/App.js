@@ -49,7 +49,7 @@ function App() {
                                        latitude={location.latitude}
                                        longitude={location.longitude}>
                             <button>
-                                <img src="/mapbox-marker-icon-20px-orange.png" alt=" "/>
+                                <img src="/mapbox-marker-icon-orange.svg" alt=" "/>
                             </button>
                         </Marker>
                     })}
