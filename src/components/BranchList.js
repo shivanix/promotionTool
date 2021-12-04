@@ -1,21 +1,22 @@
-export default function BranchList(props){
+import "./branchList.css"
 
-    return(
-    <ul className="branch-list">
-        {props.items.map((branch)=>{
+export default function BranchList(props) {
 
-            return <li className="branch-list-item"
-            style={{listStyle:`none`,
-                border:`3px solid red`,
-            margin:0,
-            padding: 0,
-            }}
-            >
-                <h2> {branch.branchName}</h2>
-            </li>
+    return (
+        <ul className="branch-list">
+            {props.items.map((branch) => {
+
+                return <li className="branch-list-item">
+                    <div className="image-box">
+                        <img src={branch.image} alt="thumbnail"/>
+                    </div>
+                    <div className="text-box">
+                        <h2> {branch.branchName}</h2>
+                    </div>
+                </li>
 
 
-        })}
-    </ul>
+            })}
+        </ul>
     );
 }
