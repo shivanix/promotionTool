@@ -6,7 +6,12 @@ import BranchList from "./components/BranchList";
 
 function App() {
 
+    const branches = [
+        {branchName: "BranchOne", latitude:43.87310, longitude: -79.28572, id: "b1"},
+        {branchName: "BranchTwo", latitude:43.88319, longitude: -79.30572, id: "b2"},
+        {branchName: "BranchThree", latitude:44.88319, longitude: -80.30572, id: "b3"}
 
+    ]
 
     const [viewport, setViewport] = useState({
 
