@@ -14,8 +14,6 @@ export default function BranchList(props) {
                         <h2> {branch.branchName}</h2>
                     </div>
                 </li>
-
-
             })}
         </ul>
     );

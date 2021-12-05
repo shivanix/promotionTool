@@ -1,11 +1,11 @@
 import {useState} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css'
 import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
-import BranchList from "./components/BranchList";
+import BranchList from "./components/marketerUI/BranchList";
 import Nav from "./components/Nav";
-import MarketerPage from "./components/Marketer";
+import MarketerPage from "./components/marketerUI/Marketer";
 import EndUser from "./components/EndUser";
-import MapTool from "./components/MapTool";
+import MapTool from "./components/marketerUI/MapTool";
 
 
 function App() {
@@ -36,28 +36,16 @@ function App() {
             offer: "Offer 3",
             image: "https://images.unsplash.com/photo-1518534543674-5933a2307dca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         }
-
     ]
 
 
     return (
-
-        <div className="main-container"
-             style={{
-                 border: `3px solid red`,
-                 display: `flex`,
-                 justifyContent: `space-between`
-             }}>
-            <div className="first-container">
-                <BranchList
-                    items={branches}
-                />
-
-            </div>
-            <MapTool
-                branchesDetails={branches}
-            />
+        <div>
+<Nav/>
+            <MarketerPage
+                branches={branches}/>
         </div>
+
     );
 }
 
