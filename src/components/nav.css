@@ -6,6 +6,11 @@ nav{
     background: darkturquoise;
     color: white;
     list-style: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    font-size: larger;
 }
 
 .nav-links{
