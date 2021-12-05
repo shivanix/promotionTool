@@ -75,7 +75,7 @@ export default function MapTool(props) {
                     })}
 
                     <StaticMap
-                    
+
 
 
                     />
