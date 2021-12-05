@@ -1,12 +1,10 @@
 import {useState} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css'
-import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
-import BranchList from "./components/marketerUI/BranchList";
 import Nav from "./components/Nav";
 import MarketerPage from "./components/marketerUI/Marketer";
 import EndUser from "./components/EndUser";
-import MapTool from "./components/marketerUI/MapTool";
-
+import HomePage from "./components/HomePage";
+import {BrowserRouter as Router, Switch, Routes, Route} from "react-router-dom";
 
 function App() {
 
@@ -38,13 +36,17 @@ function App() {
         }
     ]
 
-
     return (
-        <div>
-<Nav/>
-            <MarketerPage
-                branches={branches}/>
+        <Router>
+        <div className="app">
+            <Nav/>
+            <Routes>
+            <Route  path="/" element={<HomePage/>}/>
+            <Route path="marketer" element={<MarketerPage branches={branches}/>}/>
+            <Route  path="enduser" element={<EndUser/>}/>
+            </Routes>
         </div>
+        </Router>
 
     );
 }
