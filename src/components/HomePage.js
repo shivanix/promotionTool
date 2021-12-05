@@ -1,13 +1,15 @@
 import Button from "./Button";
-
+import "./homepage.css"
 export default function HomePage() {
     return(
-        <div>
-            <div>
-                <Button type="submit">MArketer</Button>
+        <div className="home-main-container">
+            <div className="btn-container">
+            <div >
+                <Button className="btn"type="submit">MArketer</Button>
             </div>
-            <div>
-                <Button type="submit">EndUSrer</Button>
+            <div >
+                <Button className="btn" type="submit">EndUSrer</Button>
+            </div>
             </div>
         </div>
     )
