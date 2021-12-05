@@ -52,7 +52,7 @@ function App() {
                                        latitude={location.latitude}
                                        longitude={location.longitude}>
                             <button className="marker-btn"
-                                    onClick={(e) => {
+                                    onMouseOver={(e) => {
                                         e.preventDefault();
                                         setSelectedBranch(location)
 
@@ -63,13 +63,19 @@ function App() {
                         </Marker>
                     })}
 
-                    {selectedBranch ? (<Popup longitude={selectedBranch.longitude} latitude={selectedBranch.latitude}>
+                    {selectedBranch ? (<div className="popup-main"><Popup
+                            longitude={selectedBranch.longitude}
+                            latitude={selectedBranch.latitude}
+                            onClose={()=>{
+                                setSelectedBranch(null)
+                            }}>
                             <div className="popup-img">
                                 <img src={selectedBranch.image}/> </div>
                             <div className="popup-text">
                             <h2>{selectedBranch.branchName}</h2>
                             </div>
                         </Popup>
+                        </div>
                     ) : null}
                 </ReactMapGL>
             </div>
