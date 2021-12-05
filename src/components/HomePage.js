@@ -4,10 +4,10 @@ export default function HomePage() {
     return(
         <div>
             <div>
-                <Button>MArketer</Button>
+                <Button type="submit">MArketer</Button>
             </div>
             <div>
-                <Button>EndUSrer</Button>
+                <Button type="submit">EndUSrer</Button>
             </div>
         </div>
     )
