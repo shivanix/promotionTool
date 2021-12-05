@@ -1,0 +1,25 @@
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background: darkturquoise;
+    color: white;
+    list-style: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    font-size: larger;
+}
+
+.nav-links{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+nav li{
+    color: white;
+}

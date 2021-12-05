@@ -44,6 +44,17 @@ body {
     height: 100px;
 }
 
+.main-container{
+    border: 3px dotted red;
+    display: flex;
+    justifyContent: space-between;
+    overflow: hidden;
+    height: 90vh;
+    margin-top: 10vh;
+
+}
+
+
 .popup-text {
     float: right;
     height: 100%;
