@@ -1,14 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 body {
-  margin: 0;
-  background-color: #3f3f3f;
+    margin: 0;
+    background-color: #3f3f3f;
+}
+
+.marker-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/*.marker-btn img {*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*}*/
+
+.popup-img {
+    border: 3px solid blue;
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+.popup-img img {
+    object-fit: cover;
+    width: 100%;
+    height: inherit;
+    margin: auto;
+    padding: 0;
+}
+
+.mapboxgl-popup-content {
+    width: 300px;
+    height: 100px;
+}
+
+.popup-text {
+    float: right;
+    height: 100%;
+}
+
+.popup-text p {
+    margin: 0;
+}
+
+.popup-text h2 {
+    margin-top: 0px;
 }

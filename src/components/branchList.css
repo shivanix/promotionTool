@@ -1,0 +1,36 @@
+.branch-list {
+    border: 2px solid yellow;
+    margin: 0;
+    padding: 0;
+    width: 30vw;
+}
+
+
+.branch-list-item {
+    list-style: none;
+    border: 5px solid red;
+    display: flex;
+
+    margin: 0;
+    padding: 0;
+}
+
+.image-box {
+    border: 3px solid blue;
+    width: 40%;
+    height: 100%;
+
+}
+
+.image-box img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.text-box {
+    border: 3px solid lightgreen;
+    width: 40%;
+    height: 100%;
+}
