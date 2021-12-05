@@ -1,11 +1,12 @@
 import {useState} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css'
-import ReactMapGL, {Marker, Popup} from 'react-map-gl';
+import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
 import BranchList from "./components/BranchList";
 
 
 function App() {
 
+    /******************************* Static Data **************************/
     const branches = [
         {id: "b1",
             branchName: "BranchOne",
@@ -35,7 +36,7 @@ function App() {
 
         latitude: 43.89310,
         longitude: -79.29572,
-        zoom: 10,
+        zoom: 14,
 
     });
 
@@ -96,6 +97,13 @@ function App() {
                         </Popup>
                         </div>
                     ) : null}
+
+                    <GeolocateControl
+
+
+                    />
+
+
                 </ReactMapGL>
             </div>
         </div>
