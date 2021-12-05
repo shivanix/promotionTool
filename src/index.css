@@ -45,9 +45,12 @@ body {
 }
 
 .main-container{
-    border: 3px solid red;
+    border: 3px dotted red;
     display: flex;
     justifyContent: space-between;
+    overflow: hidden;
+    height: 90vh;
+
 }
 
 
