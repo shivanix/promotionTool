@@ -14,7 +14,6 @@ export default function MapTool(props) {
     const [selectedBranch, setSelectedBranch] = useState(null)
 
 
-
     return (
         <div className="second-container">
             <ReactMapGL
@@ -24,7 +23,7 @@ export default function MapTool(props) {
                 mapStyle="mapbox://styles/shivanix/ckwrgbosw16pq14odakx3r50k"
                 width="70vw"
                 height="100vh"
-                style={{}}
+
             >
                 {props.branchesDetails.map((location) => {
                     return <Marker key={location.id}
@@ -57,31 +56,22 @@ export default function MapTool(props) {
                     </Popup>
                     </div>
                 ) : null}
-
+                {/*{console.log("viewwwwww", viewport)}*/}
                 <GeolocateControl
                     positionOptions={{enableHighAccuracy: true}}
                     trackUserLocation={true}
                     showUserLocation={true}
-                    onClick={(e)=>{
-                        console.log(e)
-                    }}
-                    onGeolocate={('click', (e)=>{
+
+
+                    onGeolocate={('click', (e) => {
                         let cordino = e
-
                         console.log("Did you find it", cordino)
-                        onclick((e)=>{
-                            console.log("Thisssssssss",e)
-                        })
+
                     })}
-
-                    <StaticMap
-
-
-
-                    />
-
-
                 />
+
+
+
             </ReactMapGL>
         </div>
     )
