@@ -43,7 +43,7 @@ function App() {
             <Routes>
             <Route  path="/" element={<HomePage/>}/>
             <Route path="marketer" element={<MarketerPage branches={branches}/>}/>
-            <Route  path="enduser" element={<EndUser/>}/>
+            <Route  path="enduser" element={<EndUser branches={branches}/>}/>
             </Routes>
         </div>
         </Router>
