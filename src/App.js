@@ -2,6 +2,9 @@ import {useState} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css'
 import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
 import BranchList from "./components/BranchList";
+import Nav from "./components/Nav";
+import MarketerPage from "./components/Marketer";
+import EndUser from "./components/EndUser";
 
 
 function App() {
