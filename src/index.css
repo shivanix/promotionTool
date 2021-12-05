@@ -44,6 +44,13 @@ body {
     height: 100px;
 }
 
+.main-container{
+    border: 3px solid red;
+    display: flex;
+    justifyContent: space-between;
+}
+
+
 .popup-text {
     float: right;
     height: 100%;
