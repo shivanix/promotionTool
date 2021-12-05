@@ -50,6 +50,7 @@ body {
     justifyContent: space-between;
     overflow: hidden;
     height: 90vh;
+    margin-top: 10vh;
 
 }
 
