@@ -1,11 +1,19 @@
 import "./nav.css"
+import {Link} from "react-router-dom";
+
 export default function Nav() {
-    return(
+    return (
         <nav>
             <ul className="nav-links">
-                <li>Home</li>
-                <li>Marketer</li>
-                <li>End-User</li>
+                <Link to="/">
+                    <li>Home</li>
+                </Link>
+                <Link to="/marketer">
+                    <li>Marketer</li>
+                </Link>
+                <Link to="enduser">
+                    <li>End-User</li>
+                </Link>
             </ul>
         </nav>
     )
