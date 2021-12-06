@@ -1,7 +1,5 @@
-// import ReactMapGL, {GeolocateControl, Marker, Popup, StaticMap} from "react-map-gl";
 import {useEffect, useRef, useState} from "react";
-import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-
+import mapboxgl from 'mapbox-gl';
 export default function MapTool(props) {
 
     mapboxgl.accessToken = "pk.eyJ1Ijoic2hpdmFuaXgiLCJhIjoiY2t3cmExaHZyMHVxODMxbnljMWhhdzF3eiJ9.P9Fsyeu_1o61PHKGsTa96g";
@@ -20,20 +18,22 @@ export default function MapTool(props) {
             center: [lng, lat],
             zoom: zoom
         });
+
+        // Create a default Markers and add it to the map.
+        props.branchesDetails.map((eachBranch)=>{
+            new mapboxgl.Marker().setLngLat([eachBranch.longitude,eachBranch.latitude]).addTo(map.current)
+        })
+
     });
-    // const [viewport, setViewport] = useState({
-    //     latitude: 43.89310,
-    //     longitude: -79.29572,
-    //     zoom: 10,
-    //
-    // });
 
     const [selectedBranch, setSelectedBranch] = useState(null)
 
 
+
     return (
         <div className="second-container">
-            <div ref={mapContainer} className="map-container" />
+            <div ref={mapContainer} className="map-container"/>
+
         </div>
     )
 }
