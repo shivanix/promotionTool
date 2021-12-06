@@ -1,32 +1,21 @@
 import {useState} from "react";
 import "./addBranch.css"
-export default function AddBranch() {
+import { uuid } from 'uuidv4';
+
+export default function AddBranch(props) {
 
     const [name, setName] = useState('');
     const [offer, setOffer] = useState('');
     const [imgurl, setImgurl] = useState('');
 
-    let branches = {'name': 'newName', 'image': 'thumbnail', 'latitude': 43.87310,
-        'longitude': -79.28572, 'offer': 'offer' }
-
     const handle = () => {
-        localStorage.setItem('Name', name);
-        localStorage.setItem('Promoffer', offer);
-        localStorage.setItem('Img-url', imgurl);
+        const coords = JSON.parse(localStorage.getItem('newCoords'));
+        const updatedBranches = JSON.parse(localStorage.getItem('Branches'));
+        updatedBranches[uuid()] = {'branchName': name, 'image': imgurl, 'latitude': coords.lat, 'longitude': coords.lng, 'offer': offer};
+        localStorage.setItem('Branches', JSON.stringify(updatedBranches));
+        localStorage.setItem('allowBranch', 'false');
     };
 
-
-    const updateData= (data) => {
-
-    }
-        // localStorage.setItem('Branches', branches object})
-        // newBranch = {....new branch data}
-        //
-        // let updatedBranches = localStorage.getItem('Branches')
-        //
-        // updatedBranches[newBranch.id] = newBranch
-        //
-        // localStorage.setItem('Branches', updatedBranches})
 
     return (
         <form>
@@ -34,7 +23,7 @@ export default function AddBranch() {
                 <div className="new-branch--control">
                     <label >New Branch Name</label>
                     <input type="text" id="bName" name="newBranchname" placeholder="New Branch.."
-                    value={name}
+                           value={name}
                            onChange={(e)=>{setName(e.target.value)}}
 
                     />
@@ -42,7 +31,7 @@ export default function AddBranch() {
                 <div className= "new-branch--control">
                     <label >Promotional Offer</label>
                     <input type="text" id="oName" name="newOffer" placeholder="New promotional offer.."
-                    value={offer}
+                           value={offer}
                            onChange={(e)=>{setOffer(e.target.value)}}
                     />
                 </div>
@@ -50,12 +39,12 @@ export default function AddBranch() {
                 <div className= "new-branch--control">
                     <label >Image URL</label>
                     <input type="text" id="img-url" name="image-url" placeholder="Add Image URL.."
-                    value={imgurl}
+                           value={imgurl}
                            onChange={(e)=>{setImgurl(e.target.value)}}
                     />
                 </div>
             </div>
-                <div className="new-branch-submit">
+            <div className="new-branch-submit">
                 <button onClick={handle}>Submit</button>
             </div>
 
