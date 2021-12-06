@@ -2,20 +2,23 @@ import "./enduser.css"
 
 export default function EndUser(props) {
 
-    const branchArr = Object.values(props.branches)
+
+    const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
+
+
     return (
         <div className="enduser-container">
             <div className="enduser-form-container">
                 <form>
                     <div className="enduser--controls">
-                    <div className="enduser-control">
-                        <label>Latitude</label>
-                        <input type="text"/>
-                    </div>
-                    <div className="enduser-control">
-                        <label>Latitude</label>
-                        <input type="text"/>
-                    </div>
+                        <div className="enduser-control">
+                            <label>Latitude</label>
+                            <input type="text"/>
+                        </div>
+                        <div className="enduser-control">
+                            <label>Latitude</label>
+                            <input type="text"/>
+                        </div>
                         <button type="submit">Add Coordinates</button>
                     </div>
                 </form>
@@ -25,6 +28,7 @@ export default function EndUser(props) {
                 <ul className="offer-list">
 
                     {branchArr.map((item) => {
+                        console.log('somethin', item)
                         return <li>
                             <div className="offer-list-item">
                                 <div className="offer-list-item-img">
