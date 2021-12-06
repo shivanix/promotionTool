@@ -1,5 +1,8 @@
 import {useEffect, useRef, useState} from "react";
 import mapboxgl from 'mapbox-gl';
+
+
+
 export default function MapTool(props) {
 
     mapboxgl.accessToken = "pk.eyJ1Ijoic2hpdmFuaXgiLCJhIjoiY2t3cmExaHZyMHVxODMxbnljMWhhdzF3eiJ9.P9Fsyeu_1o61PHKGsTa96g";
@@ -21,7 +24,15 @@ export default function MapTool(props) {
 
         // Create a default Markers and add it to the map.
         props.branchesDetails.map((eachBranch)=>{
-            new mapboxgl.Marker().setLngLat([eachBranch.longitude,eachBranch.latitude]).addTo(map.current)
+            new mapboxgl.Marker()
+                .setLngLat([eachBranch.longitude,eachBranch.latitude])
+                .setPopup(new mapboxgl.Popup({offset: 30}).setHTML(`<div class="popup-img"><img src=${eachBranch.image} alt="thumbnail"/></div>
+            <div class="popup-text">
+                <h2>${eachBranch.branchName}</h2>
+                <p>${eachBranch.offer}</p>
+            </div>`))
+
+                .addTo(map.current)
         })
 
     });
