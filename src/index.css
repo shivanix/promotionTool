@@ -47,14 +47,33 @@ body {
 .main-container{
     border: 3px dotted red;
     display: flex;
-    justifyContent: space-between;
+    justify-content: space-between;
     overflow: hidden;
     height: 90vh;
     margin-top: 10vh;
 
 }
 
+.second-container{
+    border: 4px dashed yellow;
+    width: 70%;
+}
+/****************************/
+.map-container{
+float: right;
+    width:70vw;
+    height:100vh;
 
+}
+
+canvas.mapboxgl-canvas{
+    border: 4px dotted greenyellow;
+
+}
+
+
+
+/***********************/
 .popup-text {
     float: right;
     height: 100%;
