@@ -37,6 +37,7 @@ body {
     height: inherit;
     margin: auto;
     padding: 0;
+
 }
 
 .mapboxgl-popup-content {
@@ -77,6 +78,7 @@ canvas.mapboxgl-canvas{
 .popup-text {
     float: right;
     height: 100%;
+    width: 50%;
 }
 
 .popup-text p {
