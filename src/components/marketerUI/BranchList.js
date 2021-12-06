@@ -2,9 +2,19 @@ import "./branchList.css"
 
 export default function BranchList(props) {
 
-    return (
-        <ul className="branch-list">
-            {props.items.map((branch) => {
+    const branchArr = Object.values(props.items)
+
+    return (<ul className="branch-list">
+            <li>
+                <div className="add-branch">
+                    <button
+                        type="submit"
+                        onClick={props.onAdd}
+                    >Add Branch
+                    </button>
+                </div>
+            </li>
+            {branchArr.map((branch) => {
 
                 return <li className="branch-list-item">
                     <div className="image-box">
@@ -16,5 +26,5 @@ export default function BranchList(props) {
                 </li>
             })}
         </ul>
-    );
+    )
 }
