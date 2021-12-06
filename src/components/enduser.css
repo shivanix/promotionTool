@@ -2,13 +2,49 @@
     margin-top: 10vh;
 }
 
-.form-container {
+.enduser-form-container {
     border: 4px dotted red;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #FDA65D;
 }
 
+.enduser--controls{
+    display: flex;
+
+}
+
+.enduser--controls button{
+    background-color: #4f005f; /* Green */
+    border: none;
+    color: white;
+    padding: 0.3rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 15px;
+
+}
+.enduser-control label{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: inline;
+    padding: 0.5rem;
+    color: #006400;
+}
+
+.enduser-control input{
+    font: inherit;
+    padding: 0.3rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 15rem;
+    max-width: 100%;
+}
 
 .offer-container {
     border: 4px dotted orange;
@@ -19,7 +55,7 @@
 
 
 .offer-list {
-    border: 2px solid yellow;
+    border: 2px solid red;
     margin: 0;
     padding: 0;
     width: 25vw;
@@ -30,11 +66,12 @@
 
 .offer-list-item {
     list-style: none;
-    border: 5px solid red;
+    border: 5px solid teal;
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
+    background: antiquewhite;
 }
 
 .offer-list-item-img {

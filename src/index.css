@@ -46,7 +46,7 @@ body {
 }
 
 .main-container{
-    border: 3px dotted red;
+    /*border: 3px dotted red;*/
     display: flex;
     justify-content: space-between;
     overflow: hidden;
@@ -56,7 +56,7 @@ body {
 }
 
 .second-container{
-    border: 4px dashed yellow;
+    /*border: 4px dashed yellow;*/
     width: 70%;
 }
 /****************************/
@@ -68,7 +68,7 @@ float: right;
 }
 
 canvas.mapboxgl-canvas{
-    border: 4px dotted greenyellow;
+    border: 2px solid white;
 
 }
 
