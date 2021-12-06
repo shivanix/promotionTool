@@ -9,7 +9,7 @@ export default function MarketerPage(props) {
 
     const [modalInfo, setModalInfo] = useState({
         title: 'Add new branch',
-        message: 'Please enter a branch info',
+        message: 'Please enter new branch info',
         toggle: false
     });
 
