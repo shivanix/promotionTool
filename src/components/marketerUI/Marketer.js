@@ -6,34 +6,21 @@ import {useState} from "react";
 
 export default function MarketerPage(props) {
 
-
-    const [modalInfo, setModalInfo] = useState({
-        title: 'Add new branch',
-        message: 'Please enter new branch info',
-        toggle: false
-    });
-
-
-    const toggleModal = () => {
-        setModalInfo(prev =>{return {...prev, toggle: !modalInfo.toggle}});
+    const setNewBranchCoords = (coords) => {
+        localStorage.setItem('newCoords',JSON.stringify(coords));
     };
+
 
     return(
         <div className="main-container">
-            {modalInfo.toggle &&
-            <Modal title={modalInfo.title}
-                   message={modalInfo.message}
-                   form={<AddBranch/>}
-                   onConfirm={toggleModal}/>}
+
             <div className="first-container">
                 <BranchList
-                    items={props.branches}
-                    onAdd={toggleModal}
                 />
 
             </div>
             <MapTool
-                branchesDetails={props.branches}
+                setNewBranchCoords={setNewBranchCoords}
             />
         </div>
     )
