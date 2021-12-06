@@ -1,5 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import mapboxgl from 'mapbox-gl';
+import Modal from "../Modal";
+import AddBranch from "../AddBranch";
 
 
 export default function MapTool(props) {
@@ -11,10 +13,30 @@ export default function MapTool(props) {
     const [lng, setLng] = useState(-79.29);
     const [lat, setLat] = useState(43.893);
     const [zoom, setZoom] = useState(9);
+    const [modalInfo, setModalInfo] = useState({
+        title: 'Add new branch',
+        message: 'Please enter new branch info',
+        toggle: false
+    });
+    const [newBranchCoords, setNewBranchCoords] = useState(null);
+
+    const toggleModal = () => {
+        setModalInfo(prev =>{return {...prev, toggle: !modalInfo.toggle}});
+    };
 
     //convert object-of-objects to an array - for mapping easily
-    const branchArr = Object.values(props.branchesDetails);
+    const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
 
+
+    function add_marker(event) {
+        console.log('allowBranch', localStorage.getItem('allowBranch'))
+        if(localStorage.getItem('allowBranch') === 'true') {
+            const coordinates = event.lngLat;
+            props.setNewBranchCoords(coordinates);
+            localStorage.setItem('allowBranch', 'false');
+            toggleModal();
+        }
+    }
 
     useEffect(() => {
         if (map.current) return; // initialize map only once
@@ -57,20 +79,20 @@ export default function MapTool(props) {
 
         const marker = new mapboxgl.Marker();
 
-        function add_marker(event) {
-            const coordinates = event.lngLat;
-            console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
-            marker.setLngLat(coordinates).addTo(map.current);
-        }
 
-        // map.current.on('click', add_marker);
+
+
+        map.current.on('click', add_marker);
     });
-
-    // const [selectedBranch, setSelectedBranch] = useState(null)
 
 
     return (
         <div className="second-container">
+            {modalInfo.toggle &&
+            <Modal title={modalInfo.title}
+                   message={modalInfo.message}
+                   form={<AddBranch/>}
+                   onConfirm={toggleModal}/>}
             <div ref={mapContainer} className="map-container"/>
         </div>
     )
