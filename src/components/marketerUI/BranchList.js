@@ -2,14 +2,18 @@ import "./branchList.css"
 
 export default function BranchList(props) {
 
-    const branchArr = Object.values(props.items)
+    const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
+
+    const allowAddingBranch = () => {
+        localStorage.setItem('allowBranch','true');
+    };
 
     return (<ul className="branch-list">
             <li>
                 <div className="add-branch">
                     <button
                         type="submit"
-                        onClick={props.onAdd}
+                        onClick={allowAddingBranch}
                     >Add Branch
                     </button>
                 </div>
