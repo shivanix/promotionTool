@@ -5,7 +5,6 @@ import AddBranch from "../AddBranch";
 
 
 export default function MapTool(props) {
-
     mapboxgl.accessToken = "pk.eyJ1Ijoic2hpdmFuaXgiLCJhIjoiY2t3cmExaHZyMHVxODMxbnljMWhhdzF3eiJ9.P9Fsyeu_1o61PHKGsTa96g";
 
     const mapContainer = useRef(null);
@@ -18,19 +17,50 @@ export default function MapTool(props) {
         message: 'Please enter new branch info',
         toggle: false
     });
-    const [newBranchCoords, setNewBranchCoords] = useState(null);
-
+    // const [mapMarkers, setMapMarkers] = useState(null);
+    // const [refreshMarkers, setRefreshMarkers] = useState(false);
+    //
+    // setRefreshMarkers(props.refreshMarkers);
     const toggleModal = () => {
-        setModalInfo(prev =>{return {...prev, toggle: !modalInfo.toggle}});
+        setModalInfo(prev => {
+            return {...prev, toggle: !modalInfo.toggle}
+        });
+        props.setBttnDisplay('Add Branch');
     };
 
     //convert object-of-objects to an array - for mapping easily
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
 
+    // const refreshMarkers = () => {
+    //     mapMarkers.forEach((marker) => marker.remove());
+    //     setMapMarkers(null);
+    //     let markers = [];
+    //
+    //     branchArr.map((eachBranch) => {
+    //         const marker = new mapboxgl.Marker({color: 'orange'})
+    //             .setLngLat([eachBranch.longitude, eachBranch.latitude])
+    //             .setPopup(new mapboxgl.Popup({offset: 30}).setHTML(`<div class="popup-img"><img src=${eachBranch.image} alt="thumbnail"/></div>
+    //         <div class="popup-text">
+    //             <h2>${eachBranch.branchName}</h2>
+    //             <p>${eachBranch.offer}</p>
+    //         </div>`))
+    //
+    //             .addTo(map.current);
+    //          markers.push(marker);
+    //     })
+    //     console.log('reach');
+    //     setMapMarkers(markers);
+    //     props.setRefreshMarkers(false);
+    // };
+    // console.log(props.refreshMarkers)
+    // if(props.refreshMarkers){
+    //     console.log('refreshing');
+    //     refreshMarkers();
+    // }
 
     function add_marker(event) {
         console.log('allowBranch', localStorage.getItem('allowBranch'))
-        if(localStorage.getItem('allowBranch') === 'true') {
+        if (localStorage.getItem('allowBranch') === 'true') {
             const coordinates = event.lngLat;
             props.setNewBranchCoords(coordinates);
             localStorage.setItem('allowBranch', 'false');
@@ -39,7 +69,7 @@ export default function MapTool(props) {
     }
 
     useEffect(() => {
-        if (map.current) return; // initialize map only once
+        // if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/dark-v10',
@@ -64,6 +94,7 @@ export default function MapTool(props) {
             })
         );
 
+        // let markers = [];
         // Create default Markers and popups; add it to the map.
         branchArr.map((eachBranch) => {
             new mapboxgl.Marker({color: 'orange'})
@@ -74,16 +105,16 @@ export default function MapTool(props) {
                 <p>${eachBranch.offer}</p>
             </div>`))
 
-                .addTo(map.current)
+                .addTo(map.current);
+            // markers.push(marker);
         })
-
-        const marker = new mapboxgl.Marker();
-
-
+        // setMapMarkers(markers)
+        // const marker = new mapboxgl.Marker();
 
 
         map.current.on('click', add_marker);
-    });
+        props.setRefreshMarkers(false);
+    },[props.refreshMarkers]);
 
 
     return (
@@ -91,8 +122,12 @@ export default function MapTool(props) {
             {modalInfo.toggle &&
             <Modal title={modalInfo.title}
                    message={modalInfo.message}
-                   form={<AddBranch/>}
-                   onConfirm={toggleModal}/>}
+                   form={
+                       <AddBranch
+                           setBttnDisplay={props.setBttnDisplay}
+                       />}
+                   onConfirm={toggleModal}
+            />}
             <div ref={mapContainer} className="map-container"/>
         </div>
     )
