@@ -1,88 +1,77 @@
-import ReactMapGL, {GeolocateControl, Marker, Popup, StaticMap} from "react-map-gl";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import mapboxgl from 'mapbox-gl';
+
 
 export default function MapTool(props) {
 
+    mapboxgl.accessToken = "pk.eyJ1Ijoic2hpdmFuaXgiLCJhIjoiY2t3cmExaHZyMHVxODMxbnljMWhhdzF3eiJ9.P9Fsyeu_1o61PHKGsTa96g";
 
-    const [viewport, setViewport] = useState({
-        latitude: 43.89310,
-        longitude: -79.29572,
-        zoom: 10,
+    const mapContainer = useRef(null);
+    const map = useRef(null);
+    const [lng, setLng] = useState(-79.29);
+    const [lat, setLat] = useState(43.893);
+    const [zoom, setZoom] = useState(9);
 
+    //convert object-of-objects to an array - for mapping easily
+    const branchArr = Object.values(props.branchesDetails);
+
+
+    useEffect(() => {
+        if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [lng, lat],
+            zoom: zoom
+        });
+
+        // Add Geolocatecontrol to the map.
+        map.current.addControl(
+            new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+// When active the map will receive updates to the device's location as it changes.
+                trackUserLocation: true,
+// Draw an arrow next to the location dot to indicate which direction the device is heading.
+                showUserHeading: false,
+// Hide accuracy circle
+                showAccuracyCircle: false,
+// Hide user location dot
+                showUserLocation: false,
+            })
+        );
+
+        // Create default Markers and popups; add it to the map.
+        branchArr.map((eachBranch) => {
+            new mapboxgl.Marker({color: 'orange'})
+                .setLngLat([eachBranch.longitude, eachBranch.latitude])
+                .setPopup(new mapboxgl.Popup({offset: 30}).setHTML(`<div class="popup-img"><img src=${eachBranch.image} alt="thumbnail"/></div>
+            <div class="popup-text">
+                <h2>${eachBranch.branchName}</h2>
+                <p>${eachBranch.offer}</p>
+            </div>`))
+
+                .addTo(map.current)
+        })
+
+        const marker = new mapboxgl.Marker();
+
+        function add_marker(event) {
+            const coordinates = event.lngLat;
+            console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+            marker.setLngLat(coordinates).addTo(map.current);
+        }
+
+        // map.current.on('click', add_marker);
     });
 
-    const [selectedBranch, setSelectedBranch] = useState(null)
-
+    // const [selectedBranch, setSelectedBranch] = useState(null)
 
 
     return (
         <div className="second-container">
-            <ReactMapGL
-                {...viewport}
-                onViewportChange={nextViewport => setViewport(nextViewport)}
-                mapboxApiAccessToken="pk.eyJ1Ijoic2hpdmFuaXgiLCJhIjoiY2t3cmExaHZyMHVxODMxbnljMWhhdzF3eiJ9.P9Fsyeu_1o61PHKGsTa96g"
-                mapStyle="mapbox://styles/shivanix/ckwrgbosw16pq14odakx3r50k"
-                width="70vw"
-                height="100vh"
-                style={{}}
-            >
-                {props.branchesDetails.map((location) => {
-                    return <Marker key={location.id}
-                                   latitude={location.latitude}
-                                   longitude={location.longitude}>
-                        <button className="marker-btn"
-                                onMouseOver={(e) => {
-                                    e.preventDefault();
-                                    setSelectedBranch(location)
-
-                                }}
-                        >
-                            <img src="/mapbox-marker-icon-orange.svg" alt=" "/>
-                        </button>
-                    </Marker>
-                })}
-
-                {selectedBranch ? (<div className="popup-main"><Popup
-                        longitude={selectedBranch.longitude}
-                        latitude={selectedBranch.latitude}
-                        onClose={() => {
-                            setSelectedBranch(null)
-                        }}>
-                        <div className="popup-img">
-                            <img src={selectedBranch.image} alt="thumbnail"/></div>
-                        <div className="popup-text">
-                            <h2>{selectedBranch.branchName}</h2>
-                            <p>{selectedBranch.offer}</p>
-                        </div>
-                    </Popup>
-                    </div>
-                ) : null}
-
-                <GeolocateControl
-                    positionOptions={{enableHighAccuracy: true}}
-                    trackUserLocation={true}
-                    showUserLocation={true}
-                    onClick={(e)=>{
-                        console.log(e)
-                    }}
-                    onGeolocate={('click', (e)=>{
-                        let cordino = e
-
-                        console.log("Did you find it", cordino)
-                        onclick((e)=>{
-                            console.log("Thisssssssss",e)
-                        })
-                    })}
-
-                    <StaticMap
-
-
-
-                    />
-
-
-                />
-            </ReactMapGL>
+            <div ref={mapContainer} className="map-container"/>
         </div>
     )
 }
