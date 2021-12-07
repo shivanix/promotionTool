@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     width: 30vw;
-    overflow: hidden;
+    overflow: auto;
     overflow-y: scroll;
 }
 
