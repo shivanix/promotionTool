@@ -20,12 +20,12 @@ export default function EndUser(props) {
     const isNear = (lng, lat) => {
         const lngDist = Math.abs(Math.abs(lng) - Math.abs(centerToLng));
         const latDist = Math.abs(Math.abs(lat) - Math.abs(centerToLat));
-        console.log('disntace', lngDist, latDist)
+        // console.log('disntace', lngDist, latDist)
         return lngDist < 0.030 && latDist < 0.030;
     };
 
     const filteredBranches = branchArr.filter(branch=> isNear(branch.longitude, branch.latitude));
-    console.log('filtered',filteredBranches);
+    // console.log('filtered',filteredBranches);
     return (
         <div className="enduser-container">
             <div className="enduser-form-container">
@@ -54,7 +54,7 @@ export default function EndUser(props) {
                         </div>
                         <button
                             type="submit"
-                        >Add Coordinates</button>
+                        >Set Coordinates</button>
                     </div>
                 </form>
 

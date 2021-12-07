@@ -28,7 +28,7 @@ export default function EndUserMap(props) {
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
 
     useEffect(() => {
-        console.log('mapccurent', map.current)
+        // console.log('mapccurent', map.current)
         if (!map.current) { // initialize map only once
             console.log('creating map')
             map.current = new mapboxgl.Map({

@@ -16,6 +16,9 @@ export default function HomePage() {
             <div >
                 <h2>End-User UI</h2>
                 <p> You can access the End-User UI through the nav bar</p>
+                <p> You can access the End-User UI through the nav bar</p>
+                <p> You can access the End-User UI through the nav bar</p>
+                <p> You can access the End-User UI through the nav bar</p>
             </div>
             </div>
         </div>
