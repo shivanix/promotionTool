@@ -1,12 +1,30 @@
 import "./branchList.css"
+import {useEffect, useState} from "react";
+import {uuid} from "uuidv4";
 
 export default function BranchList(props) {
-
+    // const [, forceRender] = useState({});
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
+
 
     const allowAddingBranch = () => {
         localStorage.setItem('allowBranch','true');
+        props.setBttnDisplay('Click on the map to add the new branch');
     };
+
+    const editBranch = (id) => (event) => {
+        console.log('editing', id);
+    };
+
+    const deleteBranch = (id) => (event) => {
+        console.log('deleting', id);
+        const updatedBranches = JSON.parse(localStorage.getItem('Branches'));
+        delete updatedBranches[id];
+        localStorage.setItem('Branches', JSON.stringify(updatedBranches));
+        props.updateData({});
+        props.setRefreshMarkers(true);
+    };
+
 
     return (<ul className="branch-list">
             <li>
@@ -14,19 +32,31 @@ export default function BranchList(props) {
                     <button
                         type="submit"
                         onClick={allowAddingBranch}
-                    >Add Branch
+                    >{props.bttnDisplay}
                     </button>
                 </div>
             </li>
             {branchArr.map((branch) => {
-
+                console.log(branch);
                 return <li className="branch-list-item">
                     <div className="image-box">
                         <img src={branch.image} alt="thumbnail"/>
                     </div>
-                    <div className="text-box">
+                    <div className="text-btn-box">
                         <h2> {branch.branchName}</h2>
+                        <p>{branch.offer}</p>
+
+                        <div className="btn-box">
+                            <div className="btn-branch">
+                                <button onClick={editBranch(branch.id)}>Edit</button>
+                            </div>
+                            <div className="btn-branch">
+                                <button onClick={deleteBranch(branch.id)}>Delete</button>
+                            </div>
+                        </div>
+
                     </div>
+
                 </li>
             })}
         </ul>
