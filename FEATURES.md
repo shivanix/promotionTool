@@ -12,9 +12,12 @@
 
 - User can fill the new branch details in the form generated on the screen
 
-- User can delete a branch if yu dont like it!
+- User can edit/update a selected branch's details
+
+- User can delete a branch if they do not like it!
 
 - Deletion of a branch will remove the branch's marker as well
+
 
 
 ###2. End-user
