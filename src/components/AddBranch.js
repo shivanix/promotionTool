@@ -11,7 +11,8 @@ export default function AddBranch(props) {
     const handle = () => {
         const coords = JSON.parse(localStorage.getItem('newCoords'));
         const updatedBranches = JSON.parse(localStorage.getItem('Branches'));
-        updatedBranches[uuid()] = {'branchName': name, 'image': imgurl, 'latitude': coords.lat, 'longitude': coords.lng, 'offer': offer};
+        const newId = uuid();
+        updatedBranches[newId] = {'id':newId, 'branchName': name, 'image': imgurl, 'latitude': coords.lat, 'longitude': coords.lng, 'offer': offer};
         localStorage.setItem('Branches', JSON.stringify(updatedBranches));
         localStorage.setItem('allowBranch', 'false');
     };
