@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Nav from "./components/Nav";
 import MarketerPage from "./components/marketerUI/Marketer";
@@ -38,14 +38,20 @@ function App() {
         }
     }
 
+    useEffect(()=>{
+        if(localStorage.getItem('Branches') === null){
+            localStorage.setItem('Branches', JSON.stringify(branches));
+        }
+    },[])
+
     return (
         <Router>
             <div className="app">
                 <Nav/>
                 <Routes>
                     <Route path="/" element={<HomePage/>}/>
-                    <Route path="marketer" element={<MarketerPage branches={branches}/>}/>
-                    <Route path="enduser" element={<EndUser branches={branches}/>}/>
+                    <Route path="marketer" element={<MarketerPage/>}/>
+                    <Route path="enduser" element={<EndUser/>}/>
                 </Routes>
             </div>
         </Router>
