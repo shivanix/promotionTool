@@ -9,10 +9,10 @@ export default function Nav() {
                     <li>Home</li>
                 </Link>
                 <Link to="/marketer">
-                    <li>Marketer</li>
+                    <li>Marketer UI</li>
                 </Link>
                 <Link to="enduser">
-                    <li>End-User</li>
+                    <li>End-User UI</li>
                 </Link>
             </ul>
         </nav>

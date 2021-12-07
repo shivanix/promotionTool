@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import {uuid} from "uuidv4";
 
 export default function BranchList(props) {
-    // const [, forceRender] = useState({});
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
 
 
@@ -12,8 +11,10 @@ export default function BranchList(props) {
         props.setBttnDisplay('Click on the map to add the new branch');
     };
 
-    const editBranch = (id) => (event) => {
-        console.log('editing', id);
+    const editBranch = (branch) => (event) => {
+        console.log('editing', branch);
+        props.onEdit();
+        props.setEditBranch(branch);
     };
 
     const deleteBranch = (id) => (event) => {
@@ -48,7 +49,7 @@ export default function BranchList(props) {
 
                         <div className="btn-box">
                             <div className="btn-branch">
-                                <button onClick={editBranch(branch.id)}>Edit</button>
+                                <button onClick={editBranch(branch)}>Edit</button>
                             </div>
                             <div className="btn-branch">
                                 <button onClick={deleteBranch(branch.id)}>Delete</button>

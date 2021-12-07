@@ -3,7 +3,7 @@
 }
 
 .enduser-form-container {
-    border: 4px dotted red;
+    /*border: 4px dotted red;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +47,7 @@
 }
 
 .offer-container {
-    border: 4px dotted orange;
+    /*border: 4px dotted orange;*/
     display: flex;
     justify-content: center;
     align-items: center;
