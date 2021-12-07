@@ -3,8 +3,8 @@
     margin: 0;
     padding: 0;
     width: 30vw;
-    overflow: auto;
-    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 
@@ -43,7 +43,7 @@
     margin-left: 50px;
 }
 
-.btn-box {
+.btn-box{
     display: flex;
     padding-top: 10px;
     border: 1px solid black;
@@ -52,7 +52,7 @@
 
 }
 
-.btn-branch button {
+.btn-branch button{
     background-color: mediumvioletred; /* Green */
     border: none;
     color: white;
@@ -66,14 +66,13 @@
     margin: 0.2rem;
     font-weight: bold;
 }
-
-.add-branch {
+.add-branch{
     border: 2px solid white;
     display: flex;
     justify-content: right;
 }
 
-.add-branch button {
+.add-branch button{
     background-color: #c71585; /* Green */
     border: none;
     color: white;
