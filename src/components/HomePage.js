@@ -13,6 +13,7 @@ export default function HomePage() {
                <p> You can add new branches by clicking on the button "Add Branch"</p>
                <p> You can choose the location for the new branch on the map</p>
                <p> You can fill the details of the new branch in the form generated</p>
+                <p> A marker will appear on the map indicating a new branch</p>
                <p> User can edit/update a selected branch's details</p>
                <p> You can delete a branch if yu dont like it!</p>
                <p> Deletion of a branch will remove the branch's marker as well</p>

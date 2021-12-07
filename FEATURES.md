@@ -12,6 +12,8 @@
 
 - User can fill the new branch details in the form generated on the screen
 
+- A marker will appear on the map indicating a new branch
+
 - User can edit/update a selected branch's details
 
 - User can delete a branch if they do not like it!
