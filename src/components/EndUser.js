@@ -1,4 +1,5 @@
 import "./enduser.css"
+import EndUserMap from "./EndUserMap";
 
 export default function EndUser(props) {
 
@@ -26,7 +27,9 @@ export default function EndUser(props) {
             </div>
             <div className="offer-container">
                 <ul className="offer-list">
-
+                    <li>
+                        <EndUserMap/>
+                    </li>
                     {branchArr.map((item) => {
                         console.log('somethin', item)
                         return <li>
@@ -41,7 +44,6 @@ export default function EndUser(props) {
                                     <div className="textbox-second">
                                         <p>{item.branchName}</p>
                                     </div>
-
                                 </div>
                             </div>
                         </li>
