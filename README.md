@@ -2,6 +2,12 @@
 
 promotionTool is a web application built using React and Mapbox GL JS
 
+
+
+https://user-images.githubusercontent.com/68128553/144969960-d7d3de2d-1ce3-4bc9-9ae9-7c4838260bb2.mp4
+
+
+
 ## What is promotionTool
 It is a web app simulation that allows a marketer to send promotional offers that a user can see based on their current location.
 
