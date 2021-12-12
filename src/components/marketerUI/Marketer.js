@@ -22,6 +22,7 @@ export default function MarketerPage(props) {
         });
         setBttnDisplay('Add Branch');
     };
+    // Save coords received to the localstorage key newCoords
     const setNewBranchCoords = (coords) => {
         localStorage.setItem('newCoords', JSON.stringify(coords));
     };

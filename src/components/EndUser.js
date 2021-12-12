@@ -4,11 +4,10 @@ import {useState} from "react";
 
 export default function EndUser(props) {
     // const [centerToCoordinates, setCenterToCoordinates] = useState([-90.29, 50.893]);
-    const [centerToLng, setCenterToLng] = useState(-90.29);
-    const [centerToLat, setCenterToLat] = useState(50.893);
-    const [lngInput, setLngInput] = useState();
-    const [latInput, setLatInput] = useState();
-
+    const [centerToLng, setCenterToLng] = useState(-90.29); // Longitude coords to center map at
+    const [centerToLat, setCenterToLat] = useState(50.893);// Latitude coords to center map at
+    const [lngInput, setLngInput] = useState(); // User coordinate input for longitude
+    const [latInput, setLatInput] = useState();// User coordinate input for latitude
 
 
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
@@ -17,6 +16,10 @@ export default function EndUser(props) {
         setCenterToLat(latInput);
     };
 
+    // Compare user coordinates and marker/branch coordinates
+    // If they are within a margin of less than 0.030
+    // Then return a boolean, symbolizing if they are near or not
+    // and the location should be displayed
     const isNear = (lng, lat) => {
         const lngDist = Math.abs(Math.abs(lng) - Math.abs(centerToLng));
         const latDist = Math.abs(Math.abs(lat) - Math.abs(centerToLat));

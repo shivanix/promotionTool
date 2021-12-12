@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {uuid} from "uuidv4";
 
 export default function BranchList(props) {
+    //Convert obj-of-obj to array
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
 
 
@@ -25,8 +26,6 @@ export default function BranchList(props) {
         props.updateData({});
         props.setRefreshMarkers(true);
     };
-
-
     return (<ul className="branch-list">
             <li>
                 <div className="add-branch">
