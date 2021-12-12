@@ -11,6 +11,8 @@ export default function EndUser(props) {
 
 
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
+
+
     const setCoordinates = () => {
         setCenterToLng(lngInput);
         setCenterToLat(latInput);
@@ -27,7 +29,8 @@ export default function EndUser(props) {
         return lngDist < 0.030 && latDist < 0.030;
     };
 
-    const filteredBranches = branchArr.filter(branch=> isNear(branch.longitude, branch.latitude));
+    const filteredBranches = branchArr.filter(
+        branch=> isNear(branch.longitude, branch.latitude));
     // console.log('filtered',filteredBranches);
     return (
         <div className="enduser-container">
@@ -70,8 +73,15 @@ export default function EndUser(props) {
                             centerToLat={centerToLat}
                             setCenterToLng={setCenterToLng}
                             setCenterToLat={setCenterToLat}
+
+                            /*Send setStates for coords input as props*/
+                            setLngInput={setLngInput}
+                            setLatInput={setLatInput}
                         />
                     </li>
+
+                    //filteredB: Only the branches that are in the radius set above
+
                     {filteredBranches.map((item) => {
                         return <li>
                             <div className="offer-list-item">

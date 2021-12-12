@@ -58,14 +58,26 @@ export default function EndUserMap(props) {
                 geolocate
             );
 
-            geolocate.on('geolocate', function(e) {
+            geolocate.on('geolocate', function (e) {
                 let lon = e.coords.longitude;
-                let lat = e.coords.latitude
+                let lat = e.coords.latitude;
+
+                // /****Show find location coords in input fields****/
+                // props.setLngInput(lon);
+                // props.setLatInput(lat);
+                // /********/
+
                 let position = [lon, lat];
                 // console.log("positionnnnnnn",position);
+
+                /*SET THE COORDS TO CHECK FOR THE CALC(to find if fit inside the map view)*/
                 props.setCenterToLng(lon);
                 props.setCenterToLat(lat);
             });
+
+
+            /********Add markers to the map for the branches inside the set-dimensions***********/
+
             branchArr.map((eachBranch) => {
                 new mapboxgl.Marker({color: 'orange'})
                     .setLngLat([eachBranch.longitude, eachBranch.latitude])
@@ -79,11 +91,13 @@ export default function EndUserMap(props) {
                 // markers.push(marker);
             })
         }
-        console.log(props.centerToLng, props.centerToLat)
+        // console.log(props.centerToLng, props.centerToLat)
+        // After this useEffect is ran once check if coords are set
+        // If coords are set, ease the map into them
         if (renderedOnce) {
             if (props.centerToLng && props.centerToLat) {
                 easeTo([props.centerToLng, props.centerToLat]);
-            }else{
+            } else {
                 console.log('Invalid coordinates');
             }
         } else {
