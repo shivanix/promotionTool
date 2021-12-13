@@ -20,14 +20,17 @@ export default function BranchList(props) {
     * Starts the branch editing process
     * Calls the props.onEdit func
     * Passes the branch to be edited to
-    * props.setEditBranch
+    * props.setEditBranch to keep track of it
     * */
     const editBranch = (branch) => (event) => {
         console.log('editing', branch);
-        props.onEdit();
-        props.setEditBranch(branch);
+        props.onEdit(); // Executes Marketer.js toggleModal function
+        props.setEditBranch(branch); // Marketer.js useState setter
     };
 
+    // Gets the branch value, deletes a branch based on id parameter received
+    // Refreshes the map with updateData & setRefreshMarkers
+    // refreshMarkers is a dependency of the useEffect in MapTool.js
     const deleteBranch = (id) => (event) => {
         console.log('deleting', id);
         const updatedBranches = JSON.parse(localStorage.getItem('Branches'));
