@@ -63,8 +63,8 @@ export default function EndUserMap(props) {
                 let lat = e.coords.latitude;
 
                 // /****Show find location coords in input fields****/
-                // props.setLngInput(lon);
-                // props.setLatInput(lat);
+                props.setLngInput(lon);
+                props.setLatInput(lat);
                 // /********/
 
                 let position = [lon, lat];
