@@ -19,8 +19,7 @@ const ModalOverlay = (props) => {
             </header>
             <div className={styles.content}>
                 <p>{props.message}</p>
-                {/*{props.form}*/}
-                <AddBranch/>
+                {props.form}
             </div>
             <footer className={styles.actions}>
                 <button onClick={props.onConfirm}>Cancel</button>
@@ -39,7 +38,7 @@ const Modal = (props) => {
             {createPortal(<ModalOverlay
                 title={props.title}
                 message={props.message}
-                // form={props.form}
+                form={props.form}
                 onConfirm={props.onConfirm
                 }/>, document.getElementById('overlay'))}
         </>
