@@ -25,7 +25,7 @@ export default function MapTool(props) {
     const toggleModal = () => {
         setModalInfo(prev => {
             // Only change toggle key, keep the rest the same
-            return {...prev, toggle: !modalInfo.toggle}
+            return {...prev, toggle: !prev.toggle}
         });
         props.setBttnDisplay('Add Branch');
     };
@@ -47,7 +47,7 @@ export default function MapTool(props) {
 
         if (localStorage.getItem('allowBranch') === 'true') {
             const coordinates = event.lngLat; // Receive coords from map onClick event
-            props.setNewBranchCoords(coordinates);
+            props.setNewBranchCoords(coordinates); // calls setNewBranchCoords function from parent
             localStorage.setItem('allowBranch', 'false');
             toggleModal();
         }
@@ -92,6 +92,7 @@ export default function MapTool(props) {
 
         })
 
+        // on map click call the add_marker function
         map.current.on('click', add_marker);
         props.setRefreshMarkers(false);
     },[props.refreshMarkers]);
@@ -102,10 +103,10 @@ export default function MapTool(props) {
             {modalInfo.toggle &&
             <Modal title={modalInfo.title}
                    message={modalInfo.message}
-                   // form={
-                   //     <AddBranch
-                   //         // setBttnDisplay={props.setBttnDisplay}
-                   //     />}
+                   form={
+                       <AddBranch
+                           // setBttnDisplay={props.setBttnDisplay}
+                       />}
                    onConfirm={toggleModal}
             />}
             <div ref={mapContainer} className="map-container"/>
