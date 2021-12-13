@@ -16,7 +16,7 @@ export default function EndUserMap(props) {
 
 
     const easeTo = (coordinates) => {
-        if (Number.isFinite(coordinates[0]) || Number.isFinite(coordinates[1]) || coordinates[0] > 90 || coordinates[0] < -90 || coordinates[1] > 90 || coordinates[1] < -90) {
+        if (!Number.isFinite(Number(coordinates[0])) || !Number.isFinite(Number(coordinates[1])) || Number(coordinates[0]) > 90 || Number(coordinates[0]) < -90 || Number(coordinates[1]) > 90 || Number(coordinates[1]) < -90) {
             console.log('invalid coordinates');
             return;
         }

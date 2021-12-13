@@ -80,8 +80,6 @@ export default function EndUser(props) {
                         />
                     </li>
 
-                    //filteredB: Only the branches that are in the radius set above
-
                     {filteredBranches.map((item) => {
                         return <li>
                             <div className="offer-list-item">
