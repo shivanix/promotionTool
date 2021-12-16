@@ -50,7 +50,7 @@ export default function EndUserMap(props) {
 // Hide accuracy circle
                 showAccuracyCircle: false,
 // Hide user location dot
-                showUserLocation: false,
+                showUserLocation: true,
             })
 
             // Add Geolocatecontrol to the map.
