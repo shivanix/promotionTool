@@ -50,7 +50,7 @@ export default function BranchList(props) {
                 </div>
             </li>
             {branchArr.map((branch) => {
-                console.log(branch);
+                // console.log(branch);
                 return <li className="branch-list-item">
                     <div className="image-box">
                         <img src={branch.image} alt="thumbnail"/>
