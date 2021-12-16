@@ -12,14 +12,20 @@ export default function MapTool(props) {
     const [lng, setLng] = useState(-79.29);
     const [lat, setLat] = useState(43.893);
     const [zoom, setZoom] = useState(9);
+
+    // Keeps track of data relevant to the modal
     const [modalInfo, setModalInfo] = useState({
         title: 'Add new branch',
         message: 'Please enter new branch info',
         toggle: false
     });
+
+
+    // Toggle the modal by changing the modalInfo useState, reset the Add Branch button text
     const toggleModal = () => {
         setModalInfo(prev => {
-            return {...prev, toggle: !modalInfo.toggle}
+            // Only change toggle key, keep the rest the same
+            return {...prev, toggle: !prev.toggle}
         });
         props.setBttnDisplay('Add Branch');
     };
@@ -27,11 +33,21 @@ export default function MapTool(props) {
     //convert object-of-objects to an array - for mapping easily
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
 
+
+    /*
+    *
+    * THE add_marker FUNC CHECKS IF THE allowBranch key in LS IS TRUE AND THEN ALLOWS YOU
+    * TO CLICK ON THE MAP TO SELECT COORDINATES WHICH ARE THEN PASSED
+    * AS PARAMETERS TO THE props.setNewBranchCoords
+    * THEN SET THE allowBranch KEY TO FALSE
+    * AND TOGGLE THE MODAL
+    * */
     function add_marker(event) {
-        console.log('allowBranch', localStorage.getItem('allowBranch'))
+        // console.log('allowBranch', localStorage.getItem('allowBranch'))
+
         if (localStorage.getItem('allowBranch') === 'true') {
-            const coordinates = event.lngLat;
-            props.setNewBranchCoords(coordinates);
+            const coordinates = event.lngLat; // Receive coords from map onClick event
+            props.setNewBranchCoords(coordinates); // calls setNewBranchCoords function from parent
             localStorage.setItem('allowBranch', 'false');
             toggleModal();
         }
@@ -76,6 +92,7 @@ export default function MapTool(props) {
 
         })
 
+        // on map click call the add_marker function
         map.current.on('click', add_marker);
         props.setRefreshMarkers(false);
     },[props.refreshMarkers]);
@@ -88,7 +105,7 @@ export default function MapTool(props) {
                    message={modalInfo.message}
                    form={
                        <AddBranch
-                           setBttnDisplay={props.setBttnDisplay}
+                           // setBttnDisplay={props.setBttnDisplay}
                        />}
                    onConfirm={toggleModal}
             />}

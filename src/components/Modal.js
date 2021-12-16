@@ -1,7 +1,10 @@
 import Card from "./Card";
 import styles from './Modal.module.css'
 import {createPortal} from "react-dom";
+import AddBranch from "./AddBranch";
 
+// This is the backdrop that shows behind the overlay,
+// Prevents user from interacting with page before closing it
 const Backdrop = (props) => {
     return (
         <div className={styles.backdrop} onClick={props.onConfirm}/>

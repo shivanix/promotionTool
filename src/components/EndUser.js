@@ -4,19 +4,34 @@ import {useState} from "react";
 
 export default function EndUser(props) {
     // const [centerToCoordinates, setCenterToCoordinates] = useState([-90.29, 50.893]);
-    const [centerToLng, setCenterToLng] = useState(-90.29);
-    const [centerToLat, setCenterToLat] = useState(50.893);
-    const [lngInput, setLngInput] = useState();
-    const [latInput, setLatInput] = useState();
 
+    // Longitude coords to center map at
+    const [centerToLng, setCenterToLng] = useState(-90.29);
+
+    // Latitude coords to center map at
+    const [centerToLat, setCenterToLat] = useState(50.893);
+
+
+    const [lngInput, setLngInput] = useState(); // User coordinate input for longitude
+    const [latInput, setLatInput] = useState();// User coordinate input for latitude
+
+/**********************************************************************/
 
 
     const branchArr = Object.values(JSON.parse(localStorage.getItem('Branches')));
+
+
+    //Func that sets the coords of END-USER
     const setCoordinates = () => {
         setCenterToLng(lngInput);
         setCenterToLat(latInput);
     };
 
+    // Compare user coordinates and marker/branch coordinates
+    //HERE IN THE FUNC THE PARAMS WILL BE MARKER/BRANCH COORDS
+    // If they are within a margin of less than 0.030 of END-USER LOCATION
+    // Then return a boolean, symbolizing if they are near or not
+    // and the location should be displayed
     const isNear = (lng, lat) => {
         const lngDist = Math.abs(Math.abs(lng) - Math.abs(centerToLng));
         const latDist = Math.abs(Math.abs(lat) - Math.abs(centerToLat));
@@ -24,8 +39,13 @@ export default function EndUser(props) {
         return lngDist < 0.030 && latDist < 0.030;
     };
 
-    const filteredBranches = branchArr.filter(branch=> isNear(branch.longitude, branch.latitude));
-    // console.log('filtered',filteredBranches);
+
+    //fUNC TO CHECK IF THE COORDS OF branches ARE WITHIN THE RANGE OF END-USER LOCATION
+    //w.r.t THE CALC IN isNear() func
+    const filteredBranches = branchArr.filter(
+        branch=> isNear(branch.longitude, branch.latitude));
+
+
     return (
         <div className="enduser-container">
             <div className="enduser-form-container">
@@ -67,8 +87,13 @@ export default function EndUser(props) {
                             centerToLat={centerToLat}
                             setCenterToLng={setCenterToLng}
                             setCenterToLat={setCenterToLat}
+
+                            /*Send setStates for coords input as props*/
+                            setLngInput={setLngInput}
+                            setLatInput={setLatInput}
                         />
                     </li>
+
                     {filteredBranches.map((item) => {
                         return <li>
                             <div className="offer-list-item">

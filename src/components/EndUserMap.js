@@ -16,7 +16,7 @@ export default function EndUserMap(props) {
 
 
     const easeTo = (coordinates) => {
-        if (Number.isFinite(coordinates[0]) || Number.isFinite(coordinates[1]) || coordinates[0] > 90 || coordinates[0] < -90 || coordinates[1] > 90 || coordinates[1] < -90) {
+        if (!Number.isFinite(Number(coordinates[0])) || !Number.isFinite(Number(coordinates[1])) || Number(coordinates[0]) > 90 || Number(coordinates[0]) < -90 || Number(coordinates[1]) > 90 || Number(coordinates[1]) < -90) {
             console.log('invalid coordinates');
             return;
         }
@@ -50,7 +50,7 @@ export default function EndUserMap(props) {
 // Hide accuracy circle
                 showAccuracyCircle: false,
 // Hide user location dot
-                showUserLocation: false,
+                showUserLocation: true,
             })
 
             // Add Geolocatecontrol to the map.
@@ -58,14 +58,26 @@ export default function EndUserMap(props) {
                 geolocate
             );
 
-            geolocate.on('geolocate', function(e) {
+            geolocate.on('geolocate', function (e) {
                 let lon = e.coords.longitude;
-                let lat = e.coords.latitude
+                let lat = e.coords.latitude;
+
+                // /****Show find location coords in input fields****/
+                props.setLngInput(lon);
+                props.setLatInput(lat);
+                // /********/
+
                 let position = [lon, lat];
                 // console.log("positionnnnnnn",position);
+
+                /*SET THE COORDS TO CHECK FOR THE CALC(to find if fit inside the map view)*/
                 props.setCenterToLng(lon);
                 props.setCenterToLat(lat);
             });
+
+
+            /********Add markers to the map for the branches inside the set-dimensions***********/
+
             branchArr.map((eachBranch) => {
                 new mapboxgl.Marker({color: 'orange'})
                     .setLngLat([eachBranch.longitude, eachBranch.latitude])
@@ -79,11 +91,13 @@ export default function EndUserMap(props) {
                 // markers.push(marker);
             })
         }
-        console.log(props.centerToLng, props.centerToLat)
+        // console.log(props.centerToLng, props.centerToLat)
+        // After this useEffect is ran once check if coords are set
+        // If coords are set, ease the map into them
         if (renderedOnce) {
             if (props.centerToLng && props.centerToLat) {
                 easeTo([props.centerToLng, props.centerToLat]);
-            }else{
+            } else {
                 console.log('Invalid coordinates');
             }
         } else {

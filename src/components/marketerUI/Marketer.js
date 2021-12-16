@@ -14,14 +14,15 @@ export default function MarketerPage(props) {
         message: 'Please enter new branch info',
         toggle: false
     });
-    const [editBranch, setEditBranch] = useState(null);
+    const [editBranch, setEditBranch] = useState(null); // useState to keep track of which branch will be edited
 
     const toggleModal = () => {
         setModalInfo(prev => {
-            return {...prev, toggle: !modalInfo.toggle}
+            return {...prev, toggle: !prev.toggle}
         });
         setBttnDisplay('Add Branch');
     };
+    // Save coords received to the localstorage key newCoords
     const setNewBranchCoords = (coords) => {
         localStorage.setItem('newCoords', JSON.stringify(coords));
     };
